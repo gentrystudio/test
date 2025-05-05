@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Terminal</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="login-screen" id="loginScreen">
+    <h2>> ENTER ACCESS CODE</h2>
+    <input type="password" id="accessCode" placeholder="Access Code"/>
+    <button onclick="login()">Access</button>
+  </div>
+
+  <main id="mainContent" class="hidden">
+    <h1 class="typing">> ACCESS GRANTED</h1>
+    <ul>
+      <li><a href="pages/log-042.html">Log Entry #042</a></li>
+      <li><a href="pages/archive.html">Archives</a></li>
+    </ul>
+  </main>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+
+    function login() {
+      const code = document.getElementById("accessCode").value;
+      if (code === "042") {
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("mainContent").classList.remove("hidden");
+      } else {
+        alert("Access Denied");
+      }
+    }
+  </script>
+</body>
+</html>
